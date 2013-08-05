@@ -18,6 +18,11 @@ setup-project:
 	cd presentation && npm install
 	cd presentation-stubulator && npm install
 
+test-app-ci:
+	make setup-project
+	cd presentation-functional
+	make test-app-ci
+
 ide-idea-clean:
 	rm -rf *iml
 	rm -rf .idea*
