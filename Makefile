@@ -20,8 +20,7 @@ setup-project:
 
 test-app-ci:
 	make setup-project
-	cd presentation-functional
-	make test-app-ci
+	cd presentation-functional && make test-app-ci
 
 ide-idea-clean:
 	rm -rf *iml
