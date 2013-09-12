@@ -10,10 +10,12 @@ project(':presentation') {
     println "starting server(s)..."
     threads << new Thread({
       processPresentation = "env PORT=5000 node ../presentation/server.js".execute()
+      processPresentation.consumeProcessOutput(System.out, System.err)
       println "${processPresentation.err.text}"
     })
     threads << new Thread({
       processPresentationStubulator = "env PORT=5001 node ../presentation-stubulator/server.js".execute()
+      processPresentationStubulator.consumeProcessOutput(System.out, System.err)
       println "${processPresentationStubulator.err.text}"
     })
     threads.each { it.start() }
