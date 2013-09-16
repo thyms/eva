@@ -12,7 +12,7 @@ deploy-node:
 	ssh $(user)@$(serverTarget) mv workspace/$(applicationName) workspace/$(projectName)-$(applicationName)
 	ssh $(user)@$(serverTarget) "cd workspace/$(projectName)-$(applicationName) && NODE_ENV=$(environment) PORT=$(serverPort) ~/.nvm/v0.10.0/bin/npm start > log/$(applicationName).log 2>&1" &
 
-checkout-project
+checkout-project:
 	git checkout develop
 	git submodule update --init --recursive
 
