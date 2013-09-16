@@ -41,13 +41,15 @@ evaluationDependsOn(':presentation-functional')
 project(':presentation-functional') {
   def testTasks = ['test', 'testHeadless']
 
-  testTasks.each { testTask ->
-    project(':presentation-functional').tasks."$testTask".doFirst {
-      project(':presentation').tasks.appStartUnblocking.execute()
-    }
+  if(!System.getProperty("geb.env")) {
+    testTasks.each { testTask ->
+      project(':presentation-functional').tasks."$testTask".doFirst {
+        project(':presentation').tasks.appStartUnblocking.execute()
+      }
 
-    project(':presentation-functional').tasks."$testTask".doLast {
-      project(':presentation').tasks.appStop.execute()
+      project(':presentation-functional').tasks."$testTask".doLast {
+        project(':presentation').tasks.appStop.execute()
+      }
     }
   }
 }
