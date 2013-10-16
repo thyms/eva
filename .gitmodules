@@ -1,9 +1,9 @@
 [submodule "presentation"]
 	path = presentation
-	url = git@bitbucket.org:dk_thyms/eva-presentation.git
+	url = git@github.com:thyms/eva-presentation.git
 [submodule "presentation-functional"]
 	path = presentation-functional
-	url = git@bitbucket.org:dk_thyms/eva-presentation-functional.git
+	url = git@github.com:thyms/eva-presentation-functional.git
 [submodule "presentation-stubulator"]
 	path = presentation-stubulator
-	url = git@bitbucket.org:dk_thyms/eva-presentation-stubulator.git
+	url = git@github.com:thyms/eva-presentation-stubulator.git
