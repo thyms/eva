@@ -1,17 +1,4 @@
 # type 'make -s list' to see list of targets.
-
-package-node:
-	cd $(applicationName) && npm install
-	tar cvf $(projectName)-$(applicationName).tar.gz $(applicationName) > /dev/null 2>&1
-
-deploy-node:
-	ssh $(user)@$(serverTarget) "ps -ef | grep -v grep | grep npm | grep $(projectName) | grep $(applicationName) | awk '{print \$$2}' | tr -d '\n' | xargs -0 -I processId kill -- -processId"
-	ssh $(user)@$(serverTarget) rm -rf workspace/$(projectName)-$(applicationName)*
-	scp $(projectName)-$(applicationName).tar.gz $(user)@$(serverTarget):~/workspace
-	ssh $(user)@$(serverTarget) tar xvf workspace/$(projectName)-$(applicationName).tar.gz -C workspace > /dev/null 2>&1
-	ssh $(user)@$(serverTarget) mv workspace/$(applicationName) workspace/$(projectName)-$(applicationName)
-	ssh $(user)@$(serverTarget) "cd workspace/$(projectName)-$(applicationName) && NODE_ENV=$(environment) PORT=$(serverPort) ~/.nvm/v0.10.0/bin/npm start > log/$(applicationName).log 2>&1" &
-
 checkout-project:
 	git checkout develop
 	git submodule update --init --recursive
@@ -23,7 +10,7 @@ setup-project:
 
 test-app-ci:
 	make checkout-project
-	cd presentation-functional && make test-app-ci -k
+	cd presentation-functional && make test-app-ci
 
 ide-idea-clean:
 	rm -rf *iml
