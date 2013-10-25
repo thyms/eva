@@ -12,7 +12,6 @@ setup-project:
 	cd presentation-stubulator && make setup-app
 
 test-app-ci:
-	make checkout-project
 	cd presentation-functional && make test-app-ci
 
 ide-idea-clean:
